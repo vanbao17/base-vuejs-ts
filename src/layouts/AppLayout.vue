@@ -2,6 +2,7 @@
 <template>
   <component :is="layoutComponent">
     <RouterView />
+    <ToastContainer />
   </component>
 </template>
 
@@ -9,6 +10,7 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
+import ToastContainer from "@/components/base/containers/ToastContainer.vue";
 
 const route = useRoute();
 

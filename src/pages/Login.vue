@@ -1,19 +1,36 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth.js";
+import * as yup from "yup";
 import BaseInput from "@/components/base/BaseInput.vue";
 import BaseButton from "@/components/base/BaseButton.vue";
+import { useForm } from "vee-validate";
 import { ref } from "vue";
 
 const router = useRouter();
 const auth = useAuthStore();
-
+const schema = yup.object({
+  phone: yup
+    .string()
+    .required("Vui lòng nhập số điện thoại")
+    .matches(/^0\d{9}$/, "Số điện thoại không hợp lệ"),
+  password: yup
+    .string()
+    .required("Vui lòng nhập mật khẩu")
+    .min(6, "Mật khẩu phải dài hơn 6 ký tự"),
+});
+const { handleSubmit } = useForm({
+  validationSchema: schema,
+});
 const login = () => {
   auth.setToken("fake-token-123");
   router.push("/dashboard");
 };
-const submit = () => {};
-const username = ref();
+const submit = handleSubmit((values) => {
+  login();
+});
+
+const phone = ref();
 const isLoading = ref(false);
 </script>
 
@@ -27,27 +44,19 @@ const isLoading = ref(false);
         <h1>Đăng nhập</h1>
         <form @submit.prevent="submit">
           <BaseInput
-            v-model="username"
-            name="username"
-            label="Tên đăng nhập"
-            type="text"
-            placeholder="Nhập tên đăng nhập"
-            :required="true"
-          />
-          <BaseInput
-            v-model="username"
+            v-model="phone"
             name="phone"
-            label="Phone Number"
+            label="Số điện thoại"
             type="text"
-            placeholder="Nhập tên đăng nhập"
+            placeholder="Nhập số điện thoại"
             :required="true"
           />
           <BaseInput
-            v-model="username"
-            name="email"
-            label="E-mail"
+            v-model="password"
+            name="password"
+            label="Nhập mật khẩu"
             type="text"
-            placeholder="Nhập tên đăng nhập"
+            placeholder="Nhập mật khẩu"
             :required="true"
           />
 
