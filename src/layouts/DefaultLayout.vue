@@ -9,8 +9,24 @@ import Header from "@/components/layouts/Header.vue";
       <main>
         <slot />
       </main>
-      <Footer />
+      <!-- <Footer /> -->
     </div>
   </div>
 </template>
-<style></style>
+<style lang="scss" scoped>
+.wrapper-layout {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  .container-layout {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    main {
+      flex: 1;
+      max-height: calc(100vh - 132px);
+      overflow-y: auto;
+    }
+  }
+}
+</style>

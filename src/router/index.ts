@@ -24,6 +24,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/pages/Dashboard.vue"),
     meta: { requiresAuth: true, layout: "default" },
   },
+  {
+    path: "/booking",
+    name: "Booking",
+    component: () => import("@/pages/Booking.vue"),
+    meta: { requiresAuth: true, layout: "none" },
+  },
 ];
 
 const router = createRouter({

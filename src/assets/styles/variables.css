@@ -1,5 +1,8 @@
 :root {
   --primary-color: #22c55e; /* xanh lá cây */
+  --second-color: #1ec391;
+  --gray-color: #fffffff1;
+  --third-color: #e5b63d;
   --primary-backgroud-color: #006d38;
   --primary-text-color: #006d38;
   --primary-border-color: rgba(3, 126, 48, 0.922);

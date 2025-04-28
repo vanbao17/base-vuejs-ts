@@ -22,6 +22,7 @@ const schema = yup.object({
 const { handleSubmit } = useForm({
   validationSchema: schema,
 });
+const password = ref();
 const login = () => {
   auth.setToken("fake-token-123");
   router.push("/dashboard");

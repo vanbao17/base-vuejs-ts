@@ -5,7 +5,15 @@ const props = withDefaults(
   defineProps<{
     type?: "button" | "submit" | "reset";
     color?: string;
-    variant?: "elevated" | "flat" | "tonal" | "outlined" | "text" | "plain";
+    variant?:
+      | "elevated"
+      | "flat"
+      | "tonal"
+      | "outlined"
+      | "text"
+      | "plain"
+      | "third"
+      | "second";
     loading?: boolean;
     disabled?: boolean;
     icon?: boolean;
@@ -53,6 +61,7 @@ const borderColor = computed(() => {
     ]"
     :style="{
       '--btn-color': color,
+      // 'background-color': color,
       '--btn-bg': bgColor,
       '--btn-border': borderColor,
     }"
@@ -62,7 +71,7 @@ const borderColor = computed(() => {
   </button>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .base-btn {
   width: 100%;
   display: inline-flex;
@@ -86,7 +95,16 @@ const borderColor = computed(() => {
 .base-btn.flat {
   color: var(--btn-color);
 }
-
+.base-btn.third {
+  background-color: var(--third-color);
+}
+.base-btn.second {
+  background-color: var(--gray-color);
+  color: black;
+  &:hover {
+    background-color: #f2f3f4;
+  }
+}
 .base-btn.tonal {
   background-color: var(--btn-bg);
   color: var(--btn-color);
